@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Семейный бюджет — простой калькулятор доходов и расходов для всей семьи. Без регистрации, данные в браузере." />
+  <title>Семейный бюджет — управление финансами семьи</title>
+
+  <!-- Общие стили: переменные темы, базовая вёрстка, лендинг -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/landing.css" />
+
+  <!-- Ранняя инициализация темы (без мигания при загрузке) -->
+  <script src="assets/js/theme-init.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Шапка: логотип и навигация -->
+    <header class="site-header">
+      <a href="index.html" class="site-logo">
+        <span>💰</span>
+        Семейный бюджет
+      </a>
+      <nav class="site-nav">
+        <a href="app.html" class="btn">Открыть калькулятор</a>
+      </nav>
+    </header>
+
+    <!-- Герой-блок: главное приветствие и кнопка входа в приложение -->
+    <section class="hero">
+      <div class="hero-badge">Бесплатно · Без регистрации · Данные в браузере</div>
+      <h1>Держите семейные финансы под контролем</h1>
+      <p>
+        Простой калькулятор для учёта доходов и расходов всей семьи.
+        Смотрите остаток бюджета, процент расходов и историю операций —
+        всё сохраняется автоматически на вашем устройстве.
+      </p>
+      <div class="hero-actions">
+        <a href="app.html" class="btn btn-lg">Начать учёт бюджета</a>
+        <a href="#features" class="btn btn-lg btn-outline">Узнать больше</a>
+      </div>
+    </section>
+
+    <!-- Блок возможностей приложения -->
+    <section id="features" class="features">
+      <article class="card feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Доходы и расходы</h3>
+        <p>Добавляйте операции с категориями: зарплата, продукты, жильё, дети и другие.</p>
+      </article>
+
+      <article class="card feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>Остаток и проценты</h3>
+        <p>Мгновенно видите баланс семьи и сколько процентов дохода уже израсходовано.</p>
+      </article>
+
+      <article class="card feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Автосохранение</h3>
+        <p>Все данные хранятся в браузере. Закрыли страницу — открыли снова, всё на месте.</p>
+      </article>
+
+      <article class="card feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Фильтры и сортировка</h3>
+        <p>Отдельно смотрите доходы или расходы, сортируйте по дате и сумме.</p>
+      </article>
+
+      <article class="card feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>Экспорт и импорт</h3>
+        <p>Сохраняйте бюджет в JSON и переносите данные между устройствами.</p>
+      </article>
+
+      <article class="card feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3>Светлая и тёмная тема</h3>
+        <p>Переключайте оформление кнопкой в правом нижнем углу — комфортно днём и ночью.</p>
+      </article>
+    </section>
+
+    <!-- Как начать работу — пошаговая инструкция -->
+    <section class="steps">
+      <h2>Как это работает</h2>
+      <div class="steps-grid">
+        <article class="card step">
+          <div class="step-num">1</div>
+          <h3>Откройте калькулятор</h3>
+          <p>Нажмите «Начать учёт бюджета» — регистрация не нужна.</p>
+        </article>
+        <article class="card step">
+          <div class="step-num">2</div>
+          <h3>Добавьте операции</h3>
+          <p>Укажите тип, сумму, категорию и дату каждого дохода или расхода.</p>
+        </article>
+        <article class="card step">
+          <div class="step-num">3</div>
+          <h3>Следите за балансом</h3>
+          <p>Карточки сверху показывают итоги и прогресс использования дохода.</p>
+        </article>
+        <article class="card step">
+          <div class="step-num">4</div>
+          <h3>Сохраняйте данные</h3>
+          <p>Экспортируйте JSON для резервной копии или переноса на другой компьютер.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Финальный призыв к действию -->
+    <section class="card cta-block">
+      <h2>Готовы навести порядок в финансах?</h2>
+      <p>Откройте калькулятор и добавьте первую операцию — это займёт меньше минуты.</p>
+      <a href="app.html" class="btn btn-lg">Открыть калькулятор</a>
+    </section>
+  </div>
+
+  <!-- Подвал сайта -->
+  <footer class="site-footer">
+    <p>Семейный бюджет · Открытый проект для учёта домашних финансов</p>
+  </footer>
+
+  <!-- Кнопка переключения темы (правый нижний угол) -->
+  <button
+    type="button"
+    class="theme-toggle"
+    id="themeToggle"
+    aria-label="Переключить тему оформления"
+    title="Переключить тему"
+  >🌙</button>
+
+  <script src="assets/js/theme.js"></script>
+</body>
+</html>

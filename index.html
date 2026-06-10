@@ -11,8 +11,18 @@
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/landing.css" />
 
-  <!-- Ранняя инициализация темы (без мигания при загрузке) -->
-  <script src="assets/js/theme-init.js"></script>
+  <!--
+    Ранняя инициализация темы: читаем сохранённый выбор до отрисовки страницы,
+    чтобы не было «мигания» светлой темы при загрузке в тёмном режиме.
+  -->
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem("familyBudgetTheme");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -24,6 +34,14 @@
         Семейный бюджет
       </a>
       <nav class="site-nav">
+        <!-- Кнопка темы в шапке — дублирует плавающую кнопку внизу -->
+        <button
+          type="button"
+          class="btn btn-outline theme-toggle-header"
+          id="themeToggleHeader"
+          aria-label="Переключить тему оформления"
+          title="Переключить тему"
+        >🌙 Тёмная тема</button>
         <a href="app.html" class="btn">Открыть калькулятор</a>
       </nav>
     </header>
@@ -122,7 +140,10 @@
     <p>Семейный бюджет · Открытый проект для учёта домашних финансов</p>
   </footer>
 
-  <!-- Кнопка переключения темы (правый нижний угол) -->
+  <!--
+    Плавающая кнопка переключения темы — фиксирована в правом нижнем углу.
+    Иконка: луна — включить тёмную, солнце — вернуть светлую.
+  -->
   <button
     type="button"
     class="theme-toggle"
@@ -131,6 +152,72 @@
     title="Переключить тему"
   >🌙</button>
 
-  <script src="assets/js/theme.js"></script>
+  <!--
+    Переключение светлой и тёмной темы.
+    Выбор сохраняется в localStorage (ключ familyBudgetTheme)
+    и синхронизируется с app.html на том же сайте.
+  -->
+  <script>
+    (function () {
+      var THEME_STORAGE_KEY = "familyBudgetTheme";
+      var htmlEl = document.documentElement;
+      var themeToggleBtn = document.getElementById("themeToggle");
+      var themeToggleHeader = document.getElementById("themeToggleHeader");
+
+      function getCurrentTheme() {
+        return htmlEl.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      }
+
+      function updateThemeButtons(theme) {
+        // Плавающая кнопка: только иконка
+        if (themeToggleBtn) {
+          themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+          themeToggleBtn.setAttribute(
+            "aria-label",
+            theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"
+          );
+          themeToggleBtn.title = theme === "dark" ? "Светлая тема" : "Тёмная тема";
+        }
+
+        // Кнопка в шапке: иконка + текст
+        if (themeToggleHeader) {
+          themeToggleHeader.textContent = theme === "dark"
+            ? "☀️ Светлая тема"
+            : "🌙 Тёмная тема";
+          themeToggleHeader.setAttribute(
+            "aria-label",
+            theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"
+          );
+          themeToggleHeader.title = theme === "dark" ? "Светлая тема" : "Тёмная тема";
+        }
+      }
+
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          htmlEl.setAttribute("data-theme", "dark");
+        } else {
+          htmlEl.removeAttribute("data-theme");
+        }
+
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+        updateThemeButtons(theme);
+      }
+
+      function toggleTheme() {
+        var nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", toggleTheme);
+      }
+
+      if (themeToggleHeader) {
+        themeToggleHeader.addEventListener("click", toggleTheme);
+      }
+
+      updateThemeButtons(getCurrentTheme());
+    })();
+  </script>
 </body>
 </html>
